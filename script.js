@@ -1,19 +1,21 @@
-let string = "";
-let buttons = document.querySelectorAll('.button');
-Array.from(buttons).forEach((button)=>{
-  button.addEventListener('click', (e)=>{
-    if(e.target.innerHTML == '='){
-      string = eval(string);
-      document.querySelector('input').value = string;
+let input = document.getElementById('input');
+let expression = "";
+function solve(e) {
+    // console.log(e)
+    if (e === 'ans') {
+        // evaluate the expression
+        let result = eval(expression);
+        console.log(result);
+        input.value = result;
     }
-    else if(e.target.innerHTML == 'C'){
-      string = ""
-      document.querySelector('input').value = string;
+
+    else if (e === 'clear') {
+        expression = "";
+        input.value = ""
     }
-    else{ 
-    console.log(e.target)
-    string = string + e.target.innerHTML;
-    document.querySelector('input').value = string;
-      }
-  })
-})
+    else {
+        expression += e;
+        console.log(expression)
+        input.value = expression;
+    }
+}
